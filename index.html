@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,64 +6,32 @@
 <title>Bora cineminha? 🎬❤️</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0; min-height:100vh; overflow:hidden;
-  background:#ffc8dd; font-family:Arial,sans-serif;
-  display:flex; align-items:center; justify-content:center;
-}
-.card{
-  width:min(92%,560px); padding:40px 22px;
-  text-align:center; background:rgba(255,255,255,.28);
-  border-radius:28px; box-shadow:0 12px 35px rgba(89,13,34,.18);
-  backdrop-filter:blur(4px);
-}
-.emoji{font-size:54px}
-h1{color:#590d22;font-size:clamp(30px,8vw,48px);margin:16px 0 12px}
-p{color:#800f2f;font-size:19px;margin-bottom:28px}
-.area{position:relative;height:190px}
-button{
-  border:0;border-radius:14px;padding:14px 30px;
-  font-size:20px;font-weight:700;cursor:pointer;
-  box-shadow:0 5px 12px rgba(0,0,0,.16);
-}
-#sim{background:#ff8fab;color:#590d22}
-#nao{
-  position:absolute;left:50%;top:95px;
-  transform:translateX(-50%);
-  background:#ffb3c1;color:#590d22;
-}
-#nao:hover{transform:scale(1.06)}
-#resultado{
-  display:none;color:#590d22;font-size:25px;
-  font-weight:700;line-height:1.45;
-}
-.coracao{
-  position:fixed; bottom:-30px; font-size:24px;
-  animation:subir 4s linear forwards; pointer-events:none;
-}
-@keyframes subir{
-  0%{transform:translateY(0) rotate(0);opacity:1}
-  100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
-}
+body{margin:0;min-height:100vh;overflow:hidden;background:#ffc8dd;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center}
+.card{width:min(92%,560px);padding:40px 22px;text-align:center;background:rgba(255,255,255,.28);border-radius:28px;box-shadow:0 12px 35px rgba(89,13,34,.18)}
+.emoji{font-size:54px} h1{color:#590d22;font-size:clamp(30px,8vw,48px);margin:16px 0 12px}
+p{color:#800f2f;font-size:19px;margin-bottom:28px}.area{position:relative;height:190px}
+button{border:0;border-radius:14px;padding:14px 30px;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 5px 12px rgba(0,0,0,.16);margin:7px}
+#sim{background:#ff8fab;color:#590d22} #nao{position:absolute;left:50%;top:95px;transform:translateX(-50%);background:#ffb3c1;color:#590d22}
+#resultado{display:none;color:#590d22;font-size:25px;font-weight:700;line-height:1.45}
+#whatsapp{background:#25D366;color:white;display:none}
+.coracao{position:fixed;bottom:-30px;font-size:24px;animation:subir 4s linear forwards;pointer-events:none}
+@keyframes subir{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
 </style>
 </head>
 <body>
 <div class="card">
-  <div class="emoji">🎬🍿❤️</div>
-  <h1 id="titulo">Bora cineminha?</h1>
-  <p id="subtitulo">Prometo escolher um filme bom... talvez 😏</p>
-
-  <div class="area" id="area">
-    <button id="sim">Sim ❤️</button>
-    <button id="nao">Não 😅</button>
-  </div>
-
-  <div id="resultado">
-    Opa! Então fechou! 😎❤️<br>
-    <span style="font-size:19px">Agora só falta escolher o filme e o horário. 🍿🎬</span>
-  </div>
+<div class="emoji">🎬🍿❤️</div>
+<h1 id="titulo">Bora cineminha?</h1>
+<p id="subtitulo">Prometo escolher um filme bom... talvez 😏</p>
+<div class="area" id="area">
+<button id="sim">Sim ❤️</button><button id="nao">Não 😅</button>
 </div>
-
+<div id="resultado">
+Sabia que você não ia resistir 😏❤️<br>
+<span style="font-size:19px">Agora é só escolher o filme e o horário. 🍿🎬</span><br>
+<button id="whatsapp">Mandar resposta no WhatsApp 💬</button>
+</div>
+</div>
 <script>
 const area=document.getElementById("area");
 const nao=document.getElementById("nao");
@@ -72,36 +39,45 @@ const sim=document.getElementById("sim");
 const titulo=document.getElementById("titulo");
 const subtitulo=document.getElementById("subtitulo");
 const resultado=document.getElementById("resultado");
+const whatsapp=document.getElementById("whatsapp");
+
+const registroUrl="https://script.google.com/macros/s/AKfycbx3Kfr-QUC8sqGiXwlqtQES1eJ5PhAlqn2np3AatPDs8bYP9NbU6qFIjM7sg3WIjTm5/exec";
 
 function fugir(){
-  const maxX=area.clientWidth-nao.offsetWidth;
-  const maxY=area.clientHeight-nao.offsetHeight;
-  nao.style.left=Math.max(0,Math.random()*maxX)+"px";
-  nao.style.top=Math.max(0,Math.random()*maxY)+"px";
-  nao.style.transform="none";
+ const maxX=area.clientWidth-nao.offsetWidth;
+ const maxY=area.clientHeight-nao.offsetHeight;
+ nao.style.left=Math.max(0,Math.random()*maxX)+"px";
+ nao.style.top=Math.max(0,Math.random()*maxY)+"px";
+ nao.style.transform="none";
 }
+nao.addEventListener("mouseenter",fugir);
+nao.addEventListener("touchstart",e=>{e.preventDefault();fugir();});
 
-nao.addEventListener("mouseenter",fujaComUmPoucoDeDesespero);
-nao.addEventListener("touchstart",function(e){e.preventDefault();fugir()});
+sim.addEventListener("click",async()=>{
+ titulo.textContent="Sabia que você não ia resistir! 😍";
+ subtitulo.style.display="none";
+ area.style.display="none";
+ resultado.style.display="block";
+ whatsapp.style.display="inline-block";
+ try{
+   await fetch(registroUrl+"?resposta=SIM&pagina=cineminha",{mode:"no-cors",cache:"no-store"});
+ }catch(erro){console.log("Não foi possível confirmar o registro.");}
+ for(let i=0;i<20;i++){
+  setTimeout(()=>{
+   const c=document.createElement("div");
+   c.className="coracao";
+   c.textContent=["❤️","💕","💗","💖"][Math.floor(Math.random()*4)];
+   c.style.left=Math.random()*100+"vw";
+   c.style.animationDuration=(2.5+Math.random()*2.5)+"s";
+   document.body.appendChild(c);
+   setTimeout(()=>c.remove(),5000);
+  },i*100);
+ }
+});
 
-function fujaComUmPoucoDeDesespero(){ fugir(); }
-
-sim.addEventListener("click",()=>{
-  titulo.textContent="Sabia que você ia aceitar! 😍";
-  subtitulo.style.display="none";
-  area.style.display="none";
-  resultado.style.display="block";
-  for(let i=0;i<20;i++){
-    setTimeout(()=>{
-      const c=document.createElement("div");
-      c.className="coracao";
-      c.textContent=["❤️","💕","💗","💖"][Math.floor(Math.random()*4)];
-      c.style.left=Math.random()*100+"vw";
-      c.style.animationDuration=(2.5+Math.random()*2.5)+"s";
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(),5000);
-    },i*100);
-  }
+whatsapp.addEventListener("click",()=>{
+ const mensagem=encodeURIComponent("Sim 😂❤️ Bora cineminha! 🍿🎬");
+ window.location.href="https://wa.me/?text="+mensagem;
 });
 </script>
 </body>
