@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,7 +14,7 @@ p{color:#800f2f;font-size:19px;margin-bottom:28px}.area{position:relative;height
 button{border:0;border-radius:14px;padding:14px 30px;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 5px 12px rgba(0,0,0,.16);margin:7px}
 #sim{background:#ff8fab;color:#590d22} #nao{position:absolute;left:50%;top:95px;transform:translateX(-50%);background:#ffb3c1;color:#590d22}
 #resultado{display:none;color:#590d22;font-size:25px;font-weight:700;line-height:1.45}
-#whatsapp{background:#25D366;color:white;display:none}
+#whatsapp{background:#25D366;color:white;display:none}\n#instagram{background:#833AB4;color:white;display:none}
 .coracao{position:fixed;bottom:-30px;font-size:24px;animation:subir 4s linear forwards;pointer-events:none}
 @keyframes subir{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
 </style>
@@ -27,9 +28,12 @@ button{border:0;border-radius:14px;padding:14px 30px;font-size:20px;font-weight:
 <button id="sim">Sim ❤️</button><button id="nao">Não 😅</button>
 </div>
 <div id="resultado">
-Sabia que você não ia resistir 😏❤️<br>
-<span style="font-size:19px">Agora é só escolher o filme e o horário. 🍿🎬</span><br>
-<button id="whatsapp">Mandar resposta no WhatsApp 💬</button>
+EU SABIA! KKKKKK 😎❤️<br>
+<span style="font-size:19px">Agora você não pode voltar atrás... 🍿🎬</span><br>
+<div style="margin-top:12px;">
+      <button id="whatsapp">WhatsApp 💬</button>
+      <button id="instagram">Instagram 📸</button>
+    </div>
 </div>
 </div>
 <script>
@@ -40,6 +44,7 @@ const titulo=document.getElementById("titulo");
 const subtitulo=document.getElementById("subtitulo");
 const resultado=document.getElementById("resultado");
 const whatsapp=document.getElementById("whatsapp");
+const instagram=document.getElementById("instagram");
 
 const registroUrl="https://script.google.com/macros/s/AKfycbx3Kfr-QUC8sqGiXwlqtQES1eJ5PhAlqn2np3AatPDs8bYP9NbU6qFIjM7sg3WIjTm5/exec";
 
@@ -59,6 +64,7 @@ sim.addEventListener("click",async()=>{
  area.style.display="none";
  resultado.style.display="block";
  whatsapp.style.display="inline-block";
+  instagram.style.display="inline-block";
  try{
    await fetch(registroUrl+"?resposta=SIM&pagina=cineminha",{mode:"no-cors",cache:"no-store"});
  }catch(erro){console.log("Não foi possível confirmar o registro.");}
@@ -78,6 +84,10 @@ sim.addEventListener("click",async()=>{
 whatsapp.addEventListener("click",()=>{
  const mensagem=encodeURIComponent("Sim 😂❤️ Bora cineminha! 🍿🎬");
  window.location.href="https://wa.me/?text="+mensagem;
+});
+
+instagram.addEventListener("click",()=>{
+ window.location.href="https://www.instagram.com/_rodrgsz.z/";
 });
 </script>
 </body>
